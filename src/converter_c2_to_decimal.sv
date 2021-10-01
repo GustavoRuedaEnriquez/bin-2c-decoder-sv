@@ -11,7 +11,7 @@
 module converter_c2_to_decimal #(parameter DW = 8)
 (
 input  [DW-1:0] complement2,
-output 		    sign,
+output 		sign,
 output [DW-1:0] hundreds,
 output [DW-1:0] tens,
 output [DW-1:0] units
@@ -20,8 +20,8 @@ output [DW-1:0] units
 logic [DW-1:0] binary;
 
 // First, convert the number to binary.
-assign sign    = complement2[DW - 1];
-assign binary  = sign ? ~complement2 + {{DW-1{1'b0}},1'b1} : complement2;
+assign sign   = complement2[DW - 1];
+assign binary = sign ? ~complement2 + {{DW-1{1'b0}},1'b1} : complement2;
 
 // Obtain the hundreds, since the division is not synthesable we must find another way:
 /* 
